@@ -11,21 +11,29 @@ def find_text_differences(text_dict):
         raise ValueError("Text dictionary must have exactly 2 items.")
 
     text_names = list(text_dict.keys())
-    text1 = text_dict[text_names[0]]['text'].values[0].strip()
-    text2 = text_dict[text_names[1]]['text'].values[0].strip()
+    a = text_dict[text_names[0]]['text'].values[0].strip()
+    b = text_dict[text_names[1]]['text'].values[0].strip()
 
     # Calculate the similarity between the two texts
-    seq_matcher = SequenceMatcher(None, text1, text2)
+    seq_matcher = SequenceMatcher(None, a, b)
     opcodes = seq_matcher.get_opcodes()
 
     # Find the diffs between the two texts
-    differences = []
+    differences = {'replace': [], 'delete': [], 'insert': []}
     for opcode in opcodes:
         if opcode[0] == 'replace':
-            differences.append(f"{text_names[0]}[{opcode[1]}:{opcode[2]}] -> {text_names[1]}[{opcode[3]}:{opcode[4]}]")
+            # <old> should be replaced by <new>.
+            differences['replace'].append({'position': f"{opcode[1]}:{opcode[2]}", 'original': a[opcode[1]:opcode[2]],
+                                           'new': b[opcode[3]:opcode[4]]})
         elif opcode[0] == 'delete':
-            differences.append(f"{text_names[0]}[{opcode[1]}:{opcode[2]}] -> {text_names[1]}[ ]")
+            # <value> should be deleted.
+            differences['delete'].append({'position': f"{opcode[1]}:{opcode[2]}", 'value': a[opcode[1]:opcode[2]]})
         elif opcode[0] == 'insert':
-            differences.append(f"{text_names[0]}[ ] -> {text_names[1]}[{opcode[3]}:{opcode[4]}]")
+            # <value> should be inserted at a[<position>].
+            differences['insert'].append({'position': f"{opcode[1]}", 'value': b[opcode[3]:opcode[4]]})
+
+    # Check if the texts are identical
+    if not differences['replace'] and not differences['delete'] and not differences['insert']:
+        return {}
 
     return differences

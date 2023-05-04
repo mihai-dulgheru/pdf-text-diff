@@ -1,6 +1,7 @@
 # PDF Text Diff
 
-This is a Python application that compares two PDF files and finds differences in the text. The application was developed using Python 3.11.
+This is a Python application that compares two PDF files and finds differences in the text. The application was
+developed using Python 3.11.
 
 ## Installation
 
