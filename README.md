@@ -90,7 +90,7 @@ Contributions are welcome! If you find a bug or have a feature request, please o
 
 ## Running Docker Compose
 
-Starting up Docker Compose is easy. To begin, ensure you’re in the `pdf-text-diff` folder and run the following from the
+Starting up Docker Compose is easy. To begin, ensure you're in the `pdf-text-diff` folder and run the following from the
 Command Prompt:
 
 ```commandline
