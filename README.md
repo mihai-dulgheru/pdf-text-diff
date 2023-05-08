@@ -91,3 +91,24 @@ Contributions are welcome! If you find a bug or have a feature request, please o
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more information.
+
+## Running Docker Compose
+
+Starting up Docker Compose is easy. To begin, ensure you’re in the `pdf-text-diff` folder and run the following from the
+Command Prompt:
+
+```commandline
+docker compose up -d
+```
+
+To bring down the environment and remove the volume — which we defined within compose.yaml — run the following command:
+
+```commandline
+docker compose down -v
+```
+
+## Remove all unused containers, networks, images, and volumes
+
+```commandline
+docker system prune -af
+```
