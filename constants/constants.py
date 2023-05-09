@@ -1,5 +1,6 @@
 import os.path
 import platform
+import tempfile
 from pathlib import Path
 
 import pytesseract
@@ -19,4 +20,5 @@ if platform.system() == "Windows":
 else:
     POPPLER_PATH = None
 
-PATH = os.path.join(Path.cwd(), "input")
+# PATH = os.path.join(Path.cwd(), "input")
+PATH = tempfile.gettempdir()

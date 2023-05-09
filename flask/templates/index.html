@@ -8,6 +8,33 @@
             rel="stylesheet"
             type="text/css"
     />
+    <script>
+      window.addEventListener("DOMContentLoaded", (event) => {
+        // DOM fully loaded and parsed
+        const file1 = document.getElementById("file1");
+        const file2 = document.getElementById("file2");
+        const uploadButton = document.getElementById("upload-button");
+
+        file1.addEventListener("change", validateFiles);
+        file2.addEventListener("change", validateFiles);
+        uploadButton.addEventListener("click", submitForm);
+
+        function validateFiles() {
+          if (file1.value && file2.value) {
+            uploadButton.disabled = false;
+          } else {
+            uploadButton.disabled = true;
+          }
+        }
+
+        function submitForm() {
+          uploadButton.disabled = true;
+          document.getElementById("loading-message").classList.remove("hidden");
+          document.getElementById("upload-form").submit();
+        }
+      });
+
+    </script>
 </head>
 <body>
 <main class="h-screen center">
@@ -20,19 +47,32 @@
                 id="upload-form"
                 method="POST"
         >
-            <div class="buttons-container">
+            <div class="file-input-container">
                 <label>
                     File 1
-                    <input name="file1" type="file"/>
+                    <input class="file-input" id="file1" name="file1" type="file"/>
                 </label>
                 <label>
                     File 2
-                    <input name="file2" type="file"/>
+                    <input class="file-input" id="file2" name="file2" type="file"/>
                 </label>
             </div>
-            <button class="upload-button" type="submit">Upload</button>
+            <button
+                    class="upload-button"
+                    disabled
+                    id="upload-button"
+                    type="button"
+            >
+                Upload
+            </button>
+            <div class="hidden" id="loading-message">Loading...</div>
         </form>
     </div>
+    {% if diffs %}
+    <div class="result-container">
+        <pre>{{ diffs }}</pre>
+    </div>
+    {% endif %}
 </main>
 </body>
 </html>
