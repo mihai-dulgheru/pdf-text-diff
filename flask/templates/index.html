@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8"/>
+    <title>PDF Text Diff</title>
+    <link
+            href="{{ url_for('static', filename='style.css') }}"
+            rel="stylesheet"
+            type="text/css"
+    />
 </head>
 <body>
-<h1 class="text-red-500">Hello, World!</h1>
+<main class="h-screen center">
+    <div class="upload-container">
+        <h2>Upload your files</h2>
+        <form
+                action="{{ url_for('upload') }}"
+                class="upload-form"
+                enctype="multipart/form-data"
+                id="upload-form"
+                method="POST"
+        >
+            <div class="buttons-container">
+                <label>
+                    File 1
+                    <input name="file1" type="file"/>
+                </label>
+                <label>
+                    File 2
+                    <input name="file2" type="file"/>
+                </label>
+            </div>
+            <button class="upload-button" type="submit">Upload</button>
+        </form>
+    </div>
+</main>
 </body>
 </html>
