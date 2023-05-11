@@ -1,0 +1,15 @@
+pytesseract~=0.3.10
+Pillow~=9.4.0
+pdf2image~=1.16.3
+opencv-python~=4.7.0.72
+numpy~=1.24.1
+pandas~=1.5.2
+pip~=23.1.2
+Jinja2~=3.1.2
+setuptools~=65.5.0
+packaging~=23.0
+pyparsing~=3.0.9
+Flask~=2.3.2
+python-dotenv~=1.0.0
+build~=0.10.0
+Werkzeug~=2.3.3

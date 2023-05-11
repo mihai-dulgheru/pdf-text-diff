@@ -40,7 +40,6 @@ def upload():
         os.remove(file1_path)
         os.remove(file2_path)
 
-        return render_template('index.html',
-                               diffs=json.dumps(diffs, ensure_ascii=False, indent=2, sort_keys=True))
+        return render_template('index.html', diffs=json.dumps(diffs, ensure_ascii=False, indent=2, sort_keys=True))
     else:
         return render_template('index.html')

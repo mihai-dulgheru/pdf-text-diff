@@ -1,5 +1,5 @@
 # Select the base image
-FROM python:3.11.3-alpine3.17
+FROM python:3.11
 
 # # Update the packages and install the necessary dependencies
 # RUN apt-get update && \
@@ -27,8 +27,5 @@ RUN pip install --upgrade pip
 
 # Install any necessary dependencies
 RUN pip install --no-cache-dir -r requirements.txt
-
-# Run the application
-CMD ["python3", "app.py"]
 
 EXPOSE 5000
